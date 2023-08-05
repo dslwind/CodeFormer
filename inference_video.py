@@ -144,9 +144,12 @@ if __name__ == '__main__':
 
     # -------------------- start to processing ---------------------
     for i, img_path in enumerate(input_img_list):
-        img_name = os.path.basename(img_path)
-        basename, ext = os.path.splitext(img_name)
+        basename = str(i).zfill(6)
+        img_name = f'{video_name}_{basename}' if input_video else basename
         print(f'[{i+1}/{test_img_num}] Processing: {img_name}')
+        # img_name = os.path.basename(img_path)
+        # basename, ext = os.path.splitext(img_name)
+        # print(f'[{i+1}/{test_img_num}] Processing: {img_name}')
         input_img = cv2.imread(img_path)
 
         input_img = img2tensor(input_img / 255., bgr2rgb=True, float32=True)
